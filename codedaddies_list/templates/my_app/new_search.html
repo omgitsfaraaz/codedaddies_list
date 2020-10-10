@@ -1,1 +1,12 @@
-sdsdsd
+{% extends 'base.html' %}
+
+{% block content %}
+
+	
+	<form action="{% url 'new_search' %}" method="post">
+		{% csrf_token %}
+		<input type="text" name="search" placeholder="search">
+		<input type="submit" name="submit">
+	</form>
+
+{% endblock content %}
