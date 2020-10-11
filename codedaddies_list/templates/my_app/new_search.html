@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
 
 {% block content %}
 
@@ -7,15 +9,11 @@
 	<div class="row">
 
 		{% for post in final_postings %}
-			
-		
-
-
 		    <div class="col s4">
 		      <div class="card">
 		      	<div class="card-image">
 		        	<a href="{{ post.1 }}">
-		        	<img src="https://www.springintheair.com/wp-content/uploads/bfi_thumb/red-roses-50-set-compressor-n5oucgj8yzgm0fcs1j2el4wxysgxatrjyhwsk99vtk.jpg"></a>
+		        	<img src="{{ post.3 }}"></a>
 		        </div>
 		        <div class="card-content">
 		        	<p>{{ post.0 }}</p>
@@ -25,7 +23,6 @@
 		        </div>
 		      </div>
 		    </div>
-
 	  {% endfor %}
 	</div>
 
