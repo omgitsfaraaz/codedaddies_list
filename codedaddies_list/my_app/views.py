@@ -10,8 +10,9 @@ def home(request):
 
 def new_search(request):
 	search = request.POST.get('search')
-	print(quote_plus(search))
-	final_url = BASE_CRAIGLIST_URL
+	#print(quote_plus(search))
+	final_url = BASE_CRAIGLIST_URL.format(quote_plus(search))
+	print(final_url)
 	response = requests.get('https://losangeles.craigslist.org/search/?query=python%20tutor')
 	data = response.text
 	#print(data)
