@@ -18,10 +18,25 @@ def new_search(request):
 	response = requests.get(final_url)
 	data = response.text
 	soup = BeautifulSoup(data, features='html.parser')
-	post_titles = soup.find_all('a', {'class': 'result-title'})
-	print(post_titles[0].get('href'))
+	post_listings = soup.find_all('li', {'class': 'result-row'})
+
+	final_postings = []
+
+	for post in post_listings:
+		post_title = post.find(class_='result-title').text
+		post_url = post.find('a').get('href')
+
+		if post.find(class_='result-price'):
+			post_price = post.find(class_='result-price').text
+		else:
+			post_price = 'N/A'
+
+
+		final_postings.append((post_title, post_url, post_price))
+
 	#print(data)
 	stuff_for_frontend = {
 		'search': search,
+		'final_postings': final_postings,
 	}
 	return render(request, 'my_app/new_search.html', stuff_for_frontend)
