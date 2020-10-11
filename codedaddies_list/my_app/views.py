@@ -1,4 +1,5 @@
 import requests
+from requests.compat import quote_plus
 from django.shortcuts import render
 from bs4 import BeautifulSoup
 
@@ -9,9 +10,11 @@ def home(request):
 
 def new_search(request):
 	search = request.POST.get('search')
+	print(quote_plus(search))
+	final_url = BASE_CRAIGLIST_URL
 	response = requests.get('https://losangeles.craigslist.org/search/?query=python%20tutor')
 	data = response.text
-	print(data)
+	#print(data)
 	stuff_for_frontend = {
 		'search': search,
 	}
