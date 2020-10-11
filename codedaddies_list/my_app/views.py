@@ -17,6 +17,9 @@ def new_search(request):
 	print(final_url)
 	response = requests.get(final_url)
 	data = response.text
+	soup = BeautifulSoup(data, features='html.parser')
+	post_titles = soup.find_all('a', {'class': 'result-title'})
+	print(post_titles[0].text)
 	#print(data)
 	stuff_for_frontend = {
 		'search': search,
